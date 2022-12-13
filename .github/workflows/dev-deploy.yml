@@ -10,7 +10,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
       - name: Install LFTP
-        run: sudp apt install lftp
+        run: sudo apt install lftp
       - name: Configure LFTP
         run: mkdir ~/.lftp && echo "set ssl:verify-certificate false\n\nset sftp:auto-confirm true" >> ~/.lftp/rc
       - name: Upload Folder
