@@ -1,0 +1,20 @@
+on: 
+  push:
+    branches:
+      - dev 
+name: Development SFTP Deploy
+jobs:
+  dev-sftp-deploy:
+    name: Development SFTP Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: Get latest code
+      uses: actions/checkout@v2
+    - name: Sync files
+      uses: SamKirkland/FTP-Deploy-Action@4.3.3
+      with:
+        server: ${{ secrets.DEV_FTP_HOST }}
+        username: ${{ secrets.DEV_FTP_USER }}
+        password: ${{ secrets.DEV_FTP_PASSWORD }}
+        protocol: ftps
+        port: 2222
