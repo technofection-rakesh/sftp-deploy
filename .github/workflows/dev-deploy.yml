@@ -9,9 +9,12 @@ jobs:
     steps: 
       - name: checkout
         uses: actions/checkout@v2
-      - name: Install LFTP
-        run: sudo apt install lftp
-      - name: Configure LFTP
-        run: mkdir ~/.lftp && echo "set ssl:verify-certificate false\n\nset sftp:auto-confirm true" >> ~/.lftp/rc
-      - name: Upload Folder
-        run: lftp sftp://${{ secrets.DEV_FTP_USER }}:${{ secrets.DEV_FTP_PASSWORD }}@${{ secrets.DEV_FTP_HOST }} -e "mirror --parallel=100 -R ./ /git-actions/; bye"
+      - name: Sync Files
+        uses: SamKirkland/FTP-Deploy-Action@4.3.3
+        widdth:
+          server: ${{ secrets.DEV_FTP_HOST }}
+          username: ${{ secrets.DEV_FTP_USER }}
+          password: ${{ secrets.DEV_FTP_PASSWORD }}
+          protocol: ftps
+          port: 2222
+          server-dir: ./git-actions/
