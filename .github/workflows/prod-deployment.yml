@@ -11,10 +11,8 @@ jobs:
     - name: Get latest code
       uses: actions/checkout@v2
     - name: Sync files
-      uses: SamKirkland/FTP-Deploy-Action@4.3.3
+      uses: sebastianpopp/git-ftp-action@releases/v3
       with:
-        server: ${{ secrets.MASTER_FTP_HOST }}
-        username: ${{ secrets.MASTER_FTP_USER }}
+        url: sftp://${{ secrets.MASTER_FTP_HOST }}:2222
+        user: ${{ secrets.MASTER_FTP_USER }}
         password: ${{ secrets.MASTER_FTP_PASSWORD }}
-        protocol: ftps
-        port: 2222
