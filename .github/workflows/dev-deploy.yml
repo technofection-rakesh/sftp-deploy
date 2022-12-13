@@ -14,4 +14,4 @@ jobs:
       - name: Configure LFTP
         run: mkdir ~/.lftp && echo "set ssl:verify-certificate false\n\nset sftp:auto-confirm true" >> ~/.lftp/rc
       - name: Upload Folder
-        run: lftp sftp://{{ secrets.DEV_FTP_USER }}:{{ secrets.DEV_FTP_PASSWORD }}@{{ secrets.DEV_FTP_HOST }} -e "mirror --parallel=100 -R ./ /git-actions/; bye"
+        run: lftp sftp://${{ secrets.DEV_FTP_USER }}:${{ secrets.DEV_FTP_PASSWORD }}@${{ secrets.DEV_FTP_HOST }} -e "mirror --parallel=100 -R ./ /git-actions/; bye"
