@@ -11,7 +11,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Sync Files
         uses: SamKirkland/FTP-Deploy-Action@4.3.3
-        widdth:
+        with:
           server: ${{ secrets.DEV_FTP_HOST }}
           username: ${{ secrets.DEV_FTP_USER }}
           password: ${{ secrets.DEV_FTP_PASSWORD }}
