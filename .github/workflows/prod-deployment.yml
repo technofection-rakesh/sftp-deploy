@@ -10,6 +10,8 @@ jobs:
     steps:
     - name: Get latest code
       uses: actions/checkout@v2
+    - name: Compile CURL from source
+      run: ./.github/scripts/build-curl-sftp.sh
     - name: Sync files
       uses: sebastianpopp/git-ftp-action@releases/v3
       with:
